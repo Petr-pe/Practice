@@ -37,12 +37,14 @@ void DeleteStudent(vector<Student>& students);
 void ModifyGroup(vector<Group>& groups);
 void ModifyStudent(vector<Student>& students, vector<Group>& groups);
 void DisplayStudentInfo(Student student);
-void FindMaxAbsencesStudent(vector<Student>& students);
+void DisplayMaxAbsencesStudent(vector<Student>& students);
 float CountStudentAverage(Student student);
 void DisplayStudentsAverageFromGroup(vector<Student>& students, string groupNum);
-vector<Student> FindStudentFromGroup(vector<Student>& students, vector<Group>& groups, string groupName);
+vector<Student> FindStudentsFromGroup(vector<Student>& students, vector<Group>& groups, string groupName);
 void UpdateGeneralInfo(vector<Group>& groups, vector<Student>& students, vector<GroupInfo>& groupInfos);
 void WriteGeneralInfo(vector<GroupInfo>& groupInfos);
+void SortStudentsByName(vector<Student>& students);
+
 
 bool cycle = true;
 string menu {
@@ -95,12 +97,13 @@ void ShowMenu(vector<Student>& students, vector<Group>& groups, vector<GroupInfo
 				{
 					cout << "Enter group number: "; 
 					string groupNum; cin >> groupNum;
-					vector<Student> studentsFromGroup = FindStudentFromGroup(students, groups, groupNum);
+					vector<Student> studentsFromGroup = FindStudentsFromGroup(students, groups, groupNum);
+					SortStudentsByName(studentsFromGroup);
 					DisplayStudents(studentsFromGroup);
 					break;
 				}
 				case '4': {
-					FindMaxAbsencesStudent(students);
+					DisplayMaxAbsencesStudent(students);
 					break;
 				}
 				case '5': {
@@ -216,7 +219,7 @@ void DisplayStudentsAverageFromGroup(vector<Student>& students, string groupNum)
 	if (!isFound)
 		cout << "No students found from group " << groupNum << endl;
 }
-void FindMaxAbsencesStudent(vector<Student>& students) {
+void DisplayMaxAbsencesStudent(vector<Student>& students) {
 	if (students.size() == 0) {
 		cout << "No students available!" << endl;
 		return;
@@ -232,7 +235,7 @@ void FindMaxAbsencesStudent(vector<Student>& students) {
 }
 
 
-vector<Student> FindStudentFromGroup(vector<Student>& students, vector<Group>& groups, string groupName) {
+vector<Student> FindStudentsFromGroup(vector<Student>& students, vector<Group>& groups, string groupName) {
 	vector<Student> studentsFromGroup;
 	for (int j = 0; j < students.size(); j++)
 		if (students[j].gr_num == groupName)
@@ -243,8 +246,6 @@ vector<Student> FindStudentFromGroup(vector<Student>& students, vector<Group>& g
 	
 	return studentsFromGroup;
 }
-
-
 float CountStudentAverage(Student student) {
 	float average = 0;
 	for (int j = 0; j < student.notes.size(); j++)
@@ -253,6 +254,19 @@ float CountStudentAverage(Student student) {
 	}
 	if(student.notes.size() != 0) average /= (float)student.notes.size();
 	return average;
+}
+
+void SortStudentsByName(vector<Student>& students) {
+	for (int i = 0; i < students.size() - 1; i++)
+	{
+		for (int j = 0; j < students.size() - i - 1; j++)
+		{
+			if (students[j].name > students[j + 1].name || (students[j].name == students[j + 1].name && students[j].surname > students[j + 1].surname))
+			{
+				swap(students[j], students[j + 1]);
+			}
+		}
+	}
 }
 
 void AddGroup(vector<Group>& groups) {
@@ -485,7 +499,26 @@ void ModifyStudent(vector<Student>& students, vector<Group>& groups) {
 	if (!studentFound)
 		cout << "Student not found: " << studentName << ' ' << studentSurname << endl;
 }
-
+void DeleteExtraStudents(vector<Student>& students, vector<Group>& groups) {
+	for (int i = 0; i < students.size(); i++)
+	{
+		bool isFound = false;
+		for (int j = 0; j < groups.size(); j++)
+		{
+			if(students[i].gr_num == groups[j].gr_num)
+			{
+				isFound = true;
+				break;
+			}
+		}
+		if (!isFound) {
+			cout << "Deleting student " << students[i].name << ' ' << students[i].surname << " " << students[i].gr_num << endl;
+			students.erase(students.begin() + i);
+			i--;
+		}
+	}
+	WriteStudents(students);
+}
 
 void ReadGroups(vector<Group>& groups) {
 	groups.clear();
@@ -578,7 +611,6 @@ void WriteStudents(vector<Student>& students) {
 }
 
 
-
 void UpdateGeneralInfo(vector<Group>& groups, vector<Student>& students, vector<GroupInfo>& groupInfos) {
 	groupInfos.clear();
 	GroupInfo gi;
@@ -618,26 +650,6 @@ void WriteGeneralInfo(vector<GroupInfo>& groupInfos) {
 
 
 
-void DeleteExtraStudents(vector<Student>& students, vector<Group>& groups) {
-	for (int i = 0; i < students.size(); i++)
-	{
-		bool isFound = false;
-		for (int j = 0; j < groups.size(); j++)
-		{
-			if(students[i].gr_num == groups[j].gr_num)
-			{
-				isFound = true;
-				break;
-			}
-		}
-		if (!isFound) {
-			cout << "Deleting student " << students[i].name << ' ' << students[i].surname << " " << students[i].gr_num << endl;
-			students.erase(students.begin() + i);
-			i--;
-		}
-	}
-	WriteStudents(students);
-}
 
 
 int main()
