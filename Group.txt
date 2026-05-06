@@ -21,7 +21,6 @@ I-978 Jkl 9
 O-989 Klz 10
 P-990 Lzx 11
 S-101 Qaz 12
-D-112 Wsx 13
 F-123 Edc 14
 G-134 Rfv 15
 H-145 Tgb 16
@@ -58,4 +57,4 @@ X-445 Ghi 14
 C-456 Hij 15
 V-467 Jkl 16
 N-478 Klz 9
-Pip Pup 12
+M-007 Ki 5
