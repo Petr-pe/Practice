@@ -106,3 +106,4 @@ Andrei Neagu Q-223 9 10 9 10 9 10 9 10 9 10 9 10 9 10 9 10 	2
 Cosmin Iacob W-234 7 6 7 6 7 6 7 6 7 	3
 Denis Moga E-245 10 9 10 9 10 9 10 9 10 9 	2
 Bogdan Oprea A-256 6 7 6 7 6 7 6 7 6 7 6 	4
+fufel loh A-256 2 2 2 2 2 3 43 4 5 6 7 	6
