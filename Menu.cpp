@@ -172,7 +172,7 @@ void AddStudent(vector<Student>& students, vector<Group>& groups) {
 
 void DeleteGroup(vector<Group>& groups, vector<Student>& students) {
 	string groupNum;
-	cout << "Enter group number to delete: "; cin >> groupNum;
+	cout << "\n\nEnter group number to delete: "; cin >> groupNum;
 	bool groupFound = false;
 	for (int i = 0; i < groups.size(); i++)
 		if (groups[i].gr_num == groupNum)
@@ -187,7 +187,7 @@ void DeleteGroup(vector<Group>& groups, vector<Student>& students) {
 		cout << "Group not found: " << groupNum << endl;
 		return;
 	}
-	cout << "Group " << groupNum << " deleted. Deleting students from this group..." << endl;
+	cout << "\n\nGroup " << groupNum << " deleted. Deleting students from this group..." << endl;
 	DeleteExtraStudents(students, groups);
 }
 void DeleteStudent(vector<Student>& students) {
@@ -205,15 +205,15 @@ void DeleteStudent(vector<Student>& students) {
 		}
 	
 	if (!studentFound) {
-		cout << "Student not found: " << studentName << ' ' << studentSurname << endl;
+		cout << "\n\nStudent not found: " << studentName << ' ' << studentSurname << endl;
 		return;
 	}
-	cout << "Student " << studentName << ' ' << studentSurname << " deleted." << endl;
+	cout << "\n\nStudent " << studentName << ' ' << studentSurname << " deleted." << endl;
 }
 
 void ModifyGroup(vector<Group>& groups) {
 	string groupNum;
-	cout << "Enter group number to modify: "; cin >> groupNum;
+	cout << "\n\nEnter group number to modify: "; cin >> groupNum;
 
 	bool groupFound = false;
 
@@ -224,17 +224,17 @@ void ModifyGroup(vector<Group>& groups) {
 
 			bool cycl = true;
 			while (cycl) {
-				cout << "Choose what to modify: \n[1] Specialization\t[2] Number of disciplines\t[0] Save and exit\nEnter your choice: ";
+				cout << "\n\nChoose what to modify: \n[1] Specialization\t[2] Number of disciplines\t[0] Save and exit\nEnter your choice: ";
 				char modifyChoice; cin >> modifyChoice;
 				switch (modifyChoice) {
 				case '1':
 				{
-					cout << "Enter new specialization: "; cin >> groups[i].spec;
+					cout << "\nEnter new specialization: "; cin >> groups[i].spec;
 					break;
 				}
 				case '2':
 				{
-					cout << "Enter new number of disciplines: "; cin >> groups[i].disciplines;
+					cout << "\nEnter new number of disciplines: "; cin >> groups[i].disciplines;
 					break;
 				}
 				case '0':
@@ -250,15 +250,15 @@ void ModifyGroup(vector<Group>& groups) {
 		}
 	
 	if (!groupFound) {
-		cout << "Group not found: " << groupNum << endl;
+		cout << "\nGroup not found: " << groupNum << endl;
 		return;
 	}
-	cout << "Group " << groupNum << " modified.\nIt is recommended to check students from this group for correct number of notes." << endl;
+	cout << "\nGroup " << groupNum << " modified.\nIt is recommended to check students from this group for correct number of notes." << endl;
 }
 void ModifyStudent(vector<Student>& students, vector<Group>& groups) {
 	string studentName, studentSurname;
-	cout << "Enter student name to modify: "; cin >> studentName;
-	cout << "Enter student surname to modify: "; cin >> studentSurname;
+	cout << "\nEnter student name to modify: "; cin >> studentName;
+	cout << "\nEnter student surname to modify: "; cin >> studentSurname;
 	bool studentFound = false;
 
 	for (int i = 0; i < students.size(); i++)
@@ -267,13 +267,13 @@ void ModifyStudent(vector<Student>& students, vector<Group>& groups) {
 			studentFound = true;
 			bool cycl = true;
 			while (cycl) {
-				cout << "Choose what to modify: \n[1] Group number\t[2] Notes\t[3] Absences\t[0] Save and exit\nEnter your choice: ";
+				cout << "\nChoose what to modify: \n[1] Group number\t[2] Notes\t[3] Absences\t[0] Save and exit\nEnter your choice: ";
 				char modifyChoice; cin >> modifyChoice;
 				switch (modifyChoice)
 				{
 				case '1':
 				{
-					cout << "Enter new group number: "; cin >> students[i].gr_num;
+					cout << "\nEnter new group number: "; cin >> students[i].gr_num;
 					bool groupFound = false;
 					for (int j = 0; j < groups.size(); j++)
 					{
@@ -281,19 +281,19 @@ void ModifyStudent(vector<Student>& students, vector<Group>& groups) {
 						{
 							groupFound = true;
 							students[i].notes.resize(groups[j].disciplines);
-							cout << "It is recommended to change the student's notes\n";
+							cout << "\nIt is recommended to change the student's notes\n";
 							break;
 						}
 					}
 					if (!groupFound) {
-						cout << "Invalid group: " << students[i].gr_num << endl;
+						cout << "\nInvalid group: " << students[i].gr_num << endl;
 						break;
 					}
 					break;
 				}
 				case '2':
 				{
-					cout << "Which modification do you want to make? \n[1] Change all notes\t[2] Change note for specific discipline\nEnter your choice: ";
+					cout << "\nWhich modification do you want to make? \n[1] Change all notes\t[2] Change note for specific discipline\nEnter your choice: ";
 					char noteModifyChoice; cin >> noteModifyChoice;
 					switch (noteModifyChoice)
 					{
@@ -301,20 +301,20 @@ void ModifyStudent(vector<Student>& students, vector<Group>& groups) {
 					{
 						for (int j = 0; j < students[i].notes.size(); j++)
 						{
-							cout << "Enter new note for discipline " << j + 1 << ": ";
+							cout << "\nEnter new note for discipline " << j + 1 << ": ";
 							cin >> students[i].notes[j];
 						}
 						break;
 					}
 					case '2':
 					{
-						cout << "Which discipline's notes do you want to change? Enter discipline number (1 - " << students[i].notes.size() << ") : ";
+						cout << "\nWhich discipline's notes do you want to change? Enter discipline number (1 - " << students[i].notes.size() << ") : ";
 						int discNum; cin >> discNum; discNum--;
 						if (discNum < 0 || discNum >= students[i].notes.size())
-							cout << "Invalid discipline number!" << endl;
+							cout << "\nInvalid discipline number!" << endl;
 						else
 						{
-							cout << "Enter new note for discipline " << discNum + 1 << ": ";
+							cout << "\nEnter new note for discipline " << discNum + 1 << ": ";
 							cin >> students[i].notes[discNum];
 						}
 						break;
@@ -324,7 +324,7 @@ void ModifyStudent(vector<Student>& students, vector<Group>& groups) {
 				}
 				case '3':
 				{
-					cout << "Enter new number of absences: "; cin >> students[i].absence;
+					cout << "\nEnter new number of absences: "; cin >> students[i].absence;
 					break;
 				}
 				case '0':
@@ -344,7 +344,7 @@ void ModifyStudent(vector<Student>& students, vector<Group>& groups) {
 		}
 	
 	if (!studentFound)
-		cout << "Student not found: " << studentName << ' ' << studentSurname << endl;
+		cout << "\nStudent not found: " << studentName << ' ' << studentSurname << endl;
 }
 
 void ShowMenu(vector<Student>& students, vector<Group>& groups, vector<GroupInfo>& groupInfos, bool& cycle) {

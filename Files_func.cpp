@@ -84,7 +84,7 @@ void WriteStudents(vector<Student>& students) {
 	}
 	for (int i = 0; i < students.size(); i++)
 	{
-		st << students[i].name << ' ' << students[i].surname << ' ' << students[i].gr_num << ' ';
+		st << students[i].name << ' ' << students[i].surname << '\t' << students[i].gr_num << '\t';
 		for (int j = 0; j < students[i].notes.size(); j++)
 		{
 			st << students[i].notes[j] << ' ';
