@@ -34,7 +34,6 @@ Claudiu Barbu N-212 6 7 6 7 6 7 6 7 6 7 6 7 6 7 6 	4
 Andra Neagu Q-223 9 10 9 10 9 10 9 10 9 10 9 10 9 10 9 10 	2
 Cosmin Iacob W-234 7 6 7 6 7 6 7 6 7 	3
 Denisa Moga E-245 10 9 10 9 10 9 10 9 10 9 	2
-Bogdan Oprea A-256 6 7 6 7 6 7 6 7 6 7 6 	4
 Elisa Costin B-267 9 8 9 8 9 8 9 8 9 8 9 8 	3
 Tudor Sava K-278 7 8 7 8 7 8 7 8 7 8 7 8 7 	5
 Roxana Vasile M-289 10 9 10 9 10 9 10 9 10 9 10 9 10 9 	1
@@ -48,15 +47,12 @@ Daria Cojocaru P-356 8 9 8 9 8 9 8 9 8 9 8 9 8 	3
 Andrei Moraru S-367 7 6 7 6 7 6 7 6 7 6 7 6 7 6 	5
 Irina Balan D-378 9 10 9 10 9 10 9 10 9 10 9 10 9 10 9 	2
 Vlad Ungureanu F-389 6 7 6 7 6 7 6 7 6 7 6 7 6 7 6 7 	4
-Sofia Lupu G-390 10 9 10 9 10 9 10 9 10 	1
-Cristian Popa H-401 8 7 8 7 8 7 8 7 8 7 	2
 Alina Sandu J-412 9 10 9 10 9 10 9 10 9 10 9 	3
 Victor Grosu L-423 7 8 7 8 7 8 7 8 7 8 7 8 	4
 Bianca Serban Z-434 10 9 10 9 10 9 10 9 10 9 10 9 10 	1
 Radu Pavel X-445 8 9 8 9 8 9 8 9 8 9 8 9 8 9 	2
 Nicoleta Enache C-456 9 10 9 10 9 10 9 10 9 10 9 10 9 10 9 	3
 George Filip V-467 7 6 7 6 7 6 7 6 7 6 7 6 7 6 7 6 	4
-Oana Ilie N-478 10 9 10 9 10 9 10 9 10 	1
 Symeinic Pro M-007 5 6 7 8 9 	999
 Lix Lololo M-007 1 1 1 1 10 	10
 Ivan Popa A-012 7 8 7 8 7 8 7 8 7 	8
@@ -104,6 +100,7 @@ Ion Tudor V-201 10 9 10 9 10 9 10 9 10 9 10 9 10 9 	1
 Claudiu Barbu N-212 6 7 6 7 6 7 6 7 6 7 6 7 6 7 6 	4
 Andrei Neagu Q-223 9 10 9 10 9 10 9 10 9 10 9 10 9 10 9 10 	2
 Cosmin Iacob W-234 7 6 7 6 7 6 7 6 7 	3
-Denis Moga E-245 10 9 10 9 10 9 10 9 10 9 	2
+Denis Moga W-234 10 9 10 9 10 9 10 9 10 	0
 Bogdan Oprea A-256 6 7 6 7 6 7 6 7 6 7 6 	4
-fufel loh A-256 2 2 2 2 2 3 43 4 5 6 7 	6
+NNM LL L-567 1 2 3 4 5 6 7 8 9 	10
+NNK ASD L-567 9 8 7 10 10 10 10 10 10 	12

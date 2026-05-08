@@ -32,7 +32,6 @@ void ReadStudents(vector<Student>& students, vector<Group>& groups) {
 	while (st >> s.name >> s.surname >> s.gr_num) {
 		bool groupFound = false;
 		for (int i = 0; i < groups.size(); i++)
-		{
 			if (s.gr_num == groups[i].gr_num)
 			{
 				groupFound = true;
@@ -45,7 +44,7 @@ void ReadStudents(vector<Student>& students, vector<Group>& groups) {
 				st >> s.absence;
 				break;
 			}
-		}
+
 		if (!groupFound) {
 			cout << "Invalid student found in file\n";
 			isValid = false;
@@ -101,9 +100,8 @@ void WriteGeneralInfo(vector<GroupInfo>& groupInfos) {
 		return;
 	}
 	for (int i = 0; i < groupInfos.size(); i++)
-	{
 		co << groupInfos[i].gr_num << '\t' << groupInfos[i].studentCount << '\t' << groupInfos[i].avgNotes << '\t' << groupInfos[i].absencesCount << '\n';
-	}
+	
 	co.close();
 }
 void DeleteExtraStudents(vector<Student>& students, vector<Group>& groups) {

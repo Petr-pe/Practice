@@ -48,7 +48,6 @@ P-356 Yui 13
 S-367 Uio 14
 D-378 Iop 15
 F-389 Opa 16
-G-390 Pas 9
 H-401 Asd 10
 J-412 Sdf 11
 L-423 Dfg 12
@@ -56,5 +55,6 @@ Z-434 Fgh 13
 X-445 Ghi 14
 C-456 Hij 15
 V-467 Jkl 16
-N-478 Klz 9
 M-007 Ki 5
+L-567 LKJ 9
+dsws sf 0

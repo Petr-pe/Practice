@@ -5,41 +5,50 @@
 #include <iostream>
 using namespace std;
 
+ string menu = {
+	"========================================\n"
+	"        STUDENT MANAGEMENT SYSTEM       \n"
+	"========================================\n\n"
+	"Please select an option:\n\n"
+	"[1] Display information\n"
+	"[2] Add new element\n"
+	"[3] Delete element\n"
+	"[4] Modify Element\n"
+	"[5] Update Count.txt\n"
+	"[0] Exit\n\n"
+	"----------------------------------------\n"
+	"Enter your choice: " };
+
 void DisplayGroups(vector<Group>& groups) {
 	cout << "\nGROUPS LIST:\n\n";
 	for (int i = 0; i < groups.size(); i++)
-	{
 		cout << groups[i].gr_num << "\t" << groups[i].spec << "\t" << groups[i].disciplines << '\n';
-	}
+	
 }
 void DisplayStudents(vector<Student>& students) {
 	if (students.empty())
 		return;
 	cout << "\nSTUDENTS LIST:\n\n";
 	for (int i = 0; i < students.size(); i++)
-	{
 		DisplayStudentInfo(students[i]);
-	}
+	
 }
 void DisplayStudentInfo(Student student) {
 	cout << student.name << ' ' << student.surname << '\t' << student.gr_num << '\t';
 	for (int j = 0; j < student.notes.size(); j++)
-	{
 		cout << student.notes[j] << ' ';
-	}
+
 	cout << '\t' << student.absence << endl;
 }
 void DisplayStudentsAverageFromGroup(vector<Student>& students, string groupNum) {
 	cout << "\nSTUDENTS AVERAGE FROM GROUP " << groupNum << ":\n\n";
 	bool isFound = false;
 	for (int i = 0; i < students.size(); i++)
-	{
-		if (students[i].gr_num == groupNum)
-		{
+		if (students[i].gr_num == groupNum){
 			isFound = true;
 			cout << students[i].name << ' ' << students[i].surname << "\tAverage: " << CountStudentAverage(students[i]) << endl;
 		}
-	}
+	
 	if (!isFound)
 		cout << "No students found from group " << groupNum << endl;
 }
@@ -50,10 +59,9 @@ void DisplayMaxAbsencesStudent(vector<Student>& students) {
 	}
 	Student maxAbsenceStudent = students[0];
 	for (int i = 1; i < students.size(); i++)
-	{
 		if (students[i].absence > maxAbsenceStudent.absence)
 			maxAbsenceStudent = students[i];
-	}
+	
 	cout << "Student with maximum absences: ";
 	DisplayStudentInfo(maxAbsenceStudent);
 }
@@ -97,24 +105,18 @@ vector<Student> FindStudentsFromGroup(vector<Student>& students, vector<Group>& 
 float CountStudentAverage(Student student) {
 	float average = 0;
 	for (int j = 0; j < student.notes.size(); j++)
-	{
 		average += student.notes[j];
-	}
 	if (student.notes.size() != 0) average /= (float)student.notes.size();
 	return average;
 }
 
 void SortStudentsByName(vector<Student>& students) {
+	if (students.size() <= 1)
+		return;
 	for (int i = 0; i < students.size() - 1; i++)
-	{
 		for (int j = 0; j < students.size() - i - 1; j++)
-		{
 			if (students[j].name > students[j + 1].name || (students[j].name == students[j + 1].name && students[j].surname > students[j + 1].surname))
-			{
 				swap(students[j], students[j + 1]);
-			}
-		}
-	}
 }
 
 void AddGroup(vector<Group>& groups) {
@@ -122,12 +124,11 @@ void AddGroup(vector<Group>& groups) {
 	cout << "Enter group number: "; cin >> newGroup.gr_num;
 	bool groupfound = false;
 	for (int i = 0; i < groups.size(); i++)
-	{
 		if (newGroup.gr_num == groups[i].gr_num) {
 			cout << "Group with this number already exists: " << groups[i].gr_num << '\t' << groups[i].spec << '\t' << groups[i].disciplines << endl;
 			groupfound = true;
 		}
-	}
+	
 	if (groupfound)
 		return;
 	cout << "Enter specialization: "; cin >> newGroup.spec;
@@ -143,7 +144,6 @@ void AddStudent(vector<Student>& students, vector<Group>& groups) {
 	cout << "Enter group number: "; cin >> newStudent.gr_num;
 	bool groupFound = false;
 	for (int i = 0; i < groups.size(); i++)
-	{
 		if (newStudent.gr_num == groups[i].gr_num)
 		{
 			groupFound = true;
@@ -156,7 +156,7 @@ void AddStudent(vector<Student>& students, vector<Group>& groups) {
 			cout << "Enter number of absences: "; cin >> newStudent.absence;
 			break;
 		}
-	}
+
 	if (!groupFound) {
 		cout << "Invalid student group: " << newStudent.gr_num << endl;
 		return;
@@ -164,6 +164,7 @@ void AddStudent(vector<Student>& students, vector<Group>& groups) {
 	cout << newStudent.name << ' ' << newStudent.surname << '\t' << newStudent.gr_num << '\t';
 	for (int j = 0; j < newStudent.notes.size(); j++)
 		cout << newStudent.notes[j] << ' ';
+
 	cout << '\t' << newStudent.absence << " -- added";
 	students.push_back(newStudent);
 	WriteStudents(students);
@@ -174,7 +175,6 @@ void DeleteGroup(vector<Group>& groups, vector<Student>& students) {
 	cout << "Enter group number to delete: "; cin >> groupNum;
 	bool groupFound = false;
 	for (int i = 0; i < groups.size(); i++)
-	{
 		if (groups[i].gr_num == groupNum)
 		{
 			groupFound = true;
@@ -182,7 +182,7 @@ void DeleteGroup(vector<Group>& groups, vector<Student>& students) {
 			WriteGroups(groups);
 			break;
 		}
-	}
+	
 	if (!groupFound) {
 		cout << "Group not found: " << groupNum << endl;
 		return;
@@ -196,7 +196,6 @@ void DeleteStudent(vector<Student>& students) {
 	cout << "Enter student surname to delete: "; cin >> studentSurname;
 	bool studentFound = false;
 	for (int i = 0; i < students.size(); i++)
-	{
 		if (students[i].name == studentName && students[i].surname == studentSurname)
 		{
 			studentFound = true;
@@ -204,7 +203,7 @@ void DeleteStudent(vector<Student>& students) {
 			WriteStudents(students);
 			break;
 		}
-	}
+	
 	if (!studentFound) {
 		cout << "Student not found: " << studentName << ' ' << studentSurname << endl;
 		return;
@@ -219,7 +218,6 @@ void ModifyGroup(vector<Group>& groups) {
 	bool groupFound = false;
 
 	for (int i = 0; i < groups.size(); i++)
-	{
 		if (groups[i].gr_num == groupNum)
 		{
 			groupFound = true;
@@ -250,12 +248,12 @@ void ModifyGroup(vector<Group>& groups) {
 			WriteGroups(groups);
 			break;
 		}
-	}
+	
 	if (!groupFound) {
 		cout << "Group not found: " << groupNum << endl;
 		return;
 	}
-	cout << "Group " << groupNum << " modified. It is recommended to check students from this group for correct number of notes." << endl;
+	cout << "Group " << groupNum << " modified.\nIt is recommended to check students from this group for correct number of notes." << endl;
 }
 void ModifyStudent(vector<Student>& students, vector<Group>& groups) {
 	string studentName, studentSurname;
@@ -264,7 +262,6 @@ void ModifyStudent(vector<Student>& students, vector<Group>& groups) {
 	bool studentFound = false;
 
 	for (int i = 0; i < students.size(); i++)
-	{
 		if (students[i].name == studentName && students[i].surname == studentSurname)
 		{
 			studentFound = true;
@@ -284,7 +281,7 @@ void ModifyStudent(vector<Student>& students, vector<Group>& groups) {
 						{
 							groupFound = true;
 							students[i].notes.resize(groups[j].disciplines);
-							cout << "It is recommended to change the student's notes";
+							cout << "It is recommended to change the student's notes\n";
 							break;
 						}
 					}
@@ -345,7 +342,128 @@ void ModifyStudent(vector<Student>& students, vector<Group>& groups) {
 			WriteStudents(students);
 			break;
 		}
-	}
+	
 	if (!studentFound)
 		cout << "Student not found: " << studentName << ' ' << studentSurname << endl;
+}
+
+void ShowMenu(vector<Student>& students, vector<Group>& groups, vector<GroupInfo>& groupInfos, bool& cycle) {
+	cout << menu;
+	char choice; cin >> choice;
+	switch (choice) {
+	case '0':
+	{
+		cycle = false;
+		break;
+	}
+	case '1':
+	{
+		cout << "\nWhat do you want to display?"
+			"\n[1] All Groups\n"
+			"[2] All Students\n"
+			"[3] Students From a group\n"
+			"[4] Student with maximum absences\n"
+			"[5] Students average from a group"
+			"\n\nEnter your choice : ";
+
+		char displayChoice; cin >> displayChoice;
+		switch (displayChoice)
+		{
+		case '1':
+		{
+			DisplayGroups(groups);
+			break;
+		}
+		case '2':
+		{
+			DisplayStudents(students);
+			break;
+		}
+		case '3':
+		{
+			cout << "Enter group number: ";
+			string groupNum; cin >> groupNum;
+			vector<Student> studentsFromGroup = FindStudentsFromGroup(students, groups, groupNum);
+			if (studentsFromGroup.size() > 1)
+				SortStudentsByName(studentsFromGroup);
+			DisplayStudents(studentsFromGroup);
+			break;
+		}
+		case '4': {
+			DisplayMaxAbsencesStudent(students);
+			break;
+		}
+		case '5': {
+			string groupNum;
+			cout << "Enter group number: "; cin >> groupNum;
+			DisplayStudentsAverageFromGroup(students, groupNum);
+			break;
+		}
+		}
+		break;
+	}
+	case '2':
+	{
+		cout << "What do you want to add? \n[1] Group\t[2] Student\nEnter your choice: ";
+		char addChoice; cin >> addChoice;
+		switch (addChoice)
+		{
+		case '1':
+		{
+			AddGroup(groups);
+			break;
+		}
+		case '2':
+		{
+			AddStudent(students, groups);
+			break;
+		}
+		}
+		break;
+	}
+	case '3':
+	{
+		cout << "What do you want to delete? \n[1] Group\t[2] Student\nEnter your choice: ";
+		char deleteChoice; cin >> deleteChoice;
+		switch (deleteChoice)
+		{
+		case '1':
+		{
+			DeleteGroup(groups, students);
+			break;
+		}
+		case '2':
+		{
+			DeleteStudent(students);
+			break;
+		}
+		}
+		break;
+	}
+	case '4':
+	{
+		cout << "What do you want to modify? \n[1] Group\t[2] Student\nEnter your choice: ";
+		char modifyChoice; cin >> modifyChoice;
+		switch (modifyChoice)
+		{
+		case '1':
+		{
+			ModifyGroup(groups);
+			break;
+		}
+		case '2':
+		{
+			ModifyStudent(students, groups);
+			break;
+		}
+		}
+		break;
+	}
+	case '5': {
+		UpdateGeneralInfo(groups, students, groupInfos);
+		WriteGeneralInfo(groupInfos);
+		cout << "\n Count.txt updated\n";
+		break;
+	}
+	}
 }

@@ -1,6 +1,8 @@
 #pragma once
 #include <vector>
 
+extern std::string menu;
+
 void DisplayGroups(vector<Group>& groups);
 void DisplayStudents(vector<Student>& students);
 void AddGroup(vector<Group>& groups);
@@ -16,3 +18,4 @@ void DisplayStudentsAverageFromGroup(vector<Student>& students, string groupNum)
 vector<Student> FindStudentsFromGroup(vector<Student>& students, vector<Group>& groups, string groupName);
 void UpdateGeneralInfo(vector<Group>& groups, vector<Student>& students, vector<GroupInfo>& groupInfos);
 void SortStudentsByName(vector<Student>& students);
+void ShowMenu(vector<Student>& students, vector<Group>& groups, vector<GroupInfo>& groupInfos, bool& cycle);
