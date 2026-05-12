@@ -21,7 +21,7 @@ int main()
 	while (cycle) {
 		cout << "\n";
 		ShowMenu(students, groups, groupInfos, cycle);
-		menu = "\n\n[1] Display information\t"
+		menu = "\n\n\n[1] Display information\t"
 			"[2] Add new element\t"
 			"[3] Delete element\t"
 			"[4] Modify Element\n"
