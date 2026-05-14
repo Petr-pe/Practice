@@ -33,14 +33,12 @@ void DisplayGroups(vector<Group>& groups) {
 		<< "  | " << setw(specWidth) << "Specialization"
 		<< "  | " << setw(discWidth) << "Disciplines" << "\n";
 
-	cout << "-------------------------------------------------------------\n";
+	cout << string(70, '-') << "\n";
 
 	for (int i = 0; i < groups.size(); i++) 
 		cout << left << setw(groupWidth) << groups[i].gr_num << "  | " << setw(specWidth) << groups[i].spec
 			<< "  | " << setw(discWidth) << groups[i].disciplines << "\n";
 }
-
-
 void DisplayStudents(vector<Student>& students) {
 	int nameWidth = 12, surnameWidth = 12, groupWidth = 8, notesWidth = 50, absenceWidth = 10;
 
@@ -63,7 +61,6 @@ void DisplayStudents(vector<Student>& students) {
 			<< "| " << setw(groupWidth) << students[i].gr_num
 			<< "| ";
 
-		// NOTES в фиксированную строку
 		string notesLine = "";
 		for (int j = 0; j < students[i].notes.size(); j++)
 		{
@@ -83,13 +80,19 @@ void DisplayStudentInfo(Student student) {
 }
 void DisplayStudentsAverageFromGroup(vector<Student>& students, string groupNum) {
 
-	cout << "\n\n\nSTUDENTS AVERAGE FROM GROUP " << groupNum << ":\n\n";
+	int stW = 8;
+	for (int i = 0; i < students.size(); i++)
+		stW = max(stW, (int)students[i].name.size() + (int)students[i].surname.size() + 1);
+	
+	cout << "\n\n";
+	cout << left << setw(stW) << "Students" << " | Average\n" << string(stW + 12, '-') << endl;
 
 	bool isFound = false;
 	for (int i = 0; i < students.size(); i++)
 		if (students[i].gr_num == groupNum){
 			isFound = true;
-			cout << students[i].name << ' ' << students[i].surname << "\tAverage: " << CountStudentAverage(students[i]) << endl;
+			string fullName = students[i].name + ' ' + students[i].surname;
+			cout << left << setw(stW) << fullName << " | " << CountStudentAverage(students[i]) << endl;
 		}
 	
 	if (!isFound)
@@ -473,6 +476,9 @@ void ShowMenu(vector<Student>& students, vector<Group>& groups, vector<GroupInfo
 			DisplayStudentsAverageFromGroup(students, groupNum);
 			break;
 		}
+		default:
+			cout << "\nRead what is written above";
+			break;
 		}
 		break;
 	}
@@ -492,6 +498,9 @@ void ShowMenu(vector<Student>& students, vector<Group>& groups, vector<GroupInfo
 			AddStudent(students, groups);
 			break;
 		}
+		default:
+			cout << "\nRead what is written above";
+			break;
 		}
 		break;
 	}
@@ -511,6 +520,9 @@ void ShowMenu(vector<Student>& students, vector<Group>& groups, vector<GroupInfo
 			DeleteStudent(students);
 			break;
 		}
+		default:
+			cout << "\nRead what is written above";
+			break;
 		}
 		break;
 	}
@@ -519,17 +531,20 @@ void ShowMenu(vector<Student>& students, vector<Group>& groups, vector<GroupInfo
 		cout << "\n\nWhat do you want to modify? \n[1] Group\t[2] Student\n\nEnter your choice: ";
 		char modifyChoice; cin >> modifyChoice;
 		switch (modifyChoice)
-		{
-		case '1':
-		{
-			ModifyGroup(groups);
-			break;
-		}
-		case '2':
-		{
-			ModifyStudent(students, groups);
-			break;
-		}
+			{
+			case '1':
+			{
+				ModifyGroup(groups);
+				break;
+			}
+			case '2':
+			{
+				ModifyStudent(students, groups);
+				break;
+			}
+			default:
+				cout << "\nRead what is written above";
+				break;
 		}
 		break;
 	}
@@ -539,5 +554,9 @@ void ShowMenu(vector<Student>& students, vector<Group>& groups, vector<GroupInfo
 		cout << "\n Count.txt updated\n";
 		break;
 	}
+	default:
+		cout << "\nRead what is written above";
+		break;
 	}
+
 }
