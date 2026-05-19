@@ -180,6 +180,15 @@ void AddGroup(vector<Group>& groups) {
 
 	cout << "\nEnter specialization: "; cin >> newGroup.spec;
 	cout << "\nEnter number of disciplines: "; cin >> newGroup.disciplines;
+	
+	if (cin.fail())
+	{
+		cout << "Error: enter numbers only!\n";
+		cin.clear();
+		cin.ignore(10000, '\n');
+		return;
+	}
+
 	cout << '\n\n' << newGroup.gr_num << "\t" << newGroup.spec << "\t" << newGroup.disciplines << " -- added";
 
 	groups.push_back(newGroup);
@@ -212,8 +221,26 @@ void AddStudent(vector<Student>& students, vector<Group>& groups) {
 			{
 				cout << "Enter note for discipline " << j + 1 << ": ";
 				cin >> newStudent.notes[j];
+
+				if (cin.fail())
+				{
+					cout << "Error: enter numbers only!\n";
+					cin.clear();
+					cin.ignore(10000, '\n');
+					return;
+				}
+
 			}
 			cout << "\nEnter number of absences: "; cin >> newStudent.absence;
+
+			if (cin.fail())
+			{
+				cout << "Error: enter numbers only!\n";
+				cin.clear();
+				cin.ignore(10000, '\n');
+				return;
+			}
+
 			break;
 		}
 
@@ -306,6 +333,15 @@ void ModifyGroup(vector<Group>& groups) {
 				case '2':
 				{
 					cout << "\nEnter new number of disciplines: "; cin >> groups[i].disciplines;
+
+					if (cin.fail())
+					{
+						cout << "Error: enter numbers only!\n";
+						cin.clear();
+						cin.ignore(10000, '\n');
+						return;
+					}
+
 					break;
 				}
 				case '0':
@@ -379,6 +415,15 @@ void ModifyStudent(vector<Student>& students, vector<Group>& groups) {
 						{
 							cout << "\nEnter new note for discipline " << j + 1 << ": ";
 							cin >> students[i].notes[j];
+
+							if (cin.fail())
+							{
+								cout << "Error: enter numbers only!\n";
+								cin.clear();
+								cin.ignore(10000, '\n');
+								return;
+							}
+
 						}
 						break;
 					}
@@ -393,6 +438,15 @@ void ModifyStudent(vector<Student>& students, vector<Group>& groups) {
 						{
 							cout << "\nEnter new note for discipline " << discNum + 1 << ": ";
 							cin >> students[i].notes[discNum];
+
+							if (cin.fail())
+							{
+								cout << "Error: enter numbers only!\n";
+								cin.clear();
+								cin.ignore(10000, '\n');
+								return;
+							}
+
 						}
 						break;
 					}
